@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/shared/Navbar";
+
+import Navbar from "../components/shared/Navbar.jsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "BookNook",
-  description: "A social media platform for book lovers to share and discover new books.",
+  description:
+    "A social media platform for book lovers to share and discover new books.",
 };
 
 export default function RootLayout({ children }) {
@@ -24,7 +26,7 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar></Navbar>
+        <Navbar />
         {children}
       </body>
     </html>

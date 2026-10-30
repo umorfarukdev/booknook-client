@@ -1,10 +1,8 @@
 import Link from "next/link";
-import React from "react";
 
 const Navbar = () => {
   const navLinks = (
     <>
-      {" "}
       <li>
         <a>Item 1</a>
       </li>

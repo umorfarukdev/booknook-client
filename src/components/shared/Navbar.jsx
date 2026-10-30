@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthInfo from "./AuthInfo";
 
 const Navbar = () => {
   const navLinks = (
@@ -49,12 +50,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-1.5">
-          <Link href="/login" className="btn">
-            Login
-          </Link>
-          <Link href="/register" className="btn">
-            Register
-          </Link>
+          <AuthInfo></AuthInfo>
         </div>
       </div>
     </div>

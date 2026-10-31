@@ -5,10 +5,19 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <a>Item 1</a>
+        <Link href={"/"}>Home</Link>
       </li>
       <li>
-        <a>Item 3</a>
+        <Link href={"/books"}>All Books</Link>
+      </li>
+      <li>
+        <Link href={"/add-book"}>Add Book</Link>
+      </li>
+      <li>
+        <Link href={"/my-books"}>My Books</Link>
+      </li>
+      <li>
+        <Link href={"/my-borrows"}>My Borrows</Link>
       </li>
     </>
   );

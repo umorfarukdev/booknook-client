@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookDetailsPage = () => {
+const BookDetailsPage = async () => {
     return (
         <div>
             

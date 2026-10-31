@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 // const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -38,7 +39,6 @@ export default function AddBookForm({ user }) {
       availableCopies: totalCopies,
       date,
     };
-    console.log(addBookData);
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
       method: "POST",
@@ -54,21 +54,12 @@ export default function AddBookForm({ user }) {
       throw new Error(result.message || "Failed to add book");
     }
 
-    console.log(result);
-
-    // const bookData = {
-    //   title: String(formData.get("title")),
-    //   author: String(formData.get("author")),
-    //   category: String(formData.get("category")),
-    //   imageUrl: String(formData.get("imageUrl")),
-    //   description: String(formData.get("description")),
-    //   totalCopies,
-    //   availableCopies: totalCopies,
-    //   addedBy: {
-    //     name: userName,
-    //     email: userEmail,
-    //   },
-    // };
+    if (res.ok) {
+      toast.success("Book added successfully!");
+      form.reset();
+    } else {
+      toast.error(message);
+    }
 
     // try {
     //   setLoading(true);
@@ -86,13 +77,12 @@ export default function AddBookForm({ user }) {
 
     //   const result = await res.json();
 
-    //   toast.success("Book added successfully!");
-    //   form.reset();
+    //
     // } catch (error) {
     //   const message =
     //     error instanceof Error ? error.message : "Something went wrong";
 
-    //   toast.error(message);
+    //
     // } finally {
     //   setLoading(false);
     // }

@@ -1,7 +1,15 @@
 import MyBorrowsTable from "@/components/books/MyBorrowsTable";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const MyBorrowsPage = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/borrows`);
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/borrows/${user.email}`
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to load borrowed books (${response.status})`, {
@@ -10,6 +18,7 @@ const MyBorrowsPage = async () => {
   }
 
   const borrows = await response.json();
+  console.log(borrows);
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -21,7 +30,11 @@ const MyBorrowsPage = async () => {
           Keep track of your borrowed books and return dates.
         </p>
       </header>
-      {/* <MyBorrowsTable initialBorrows={borrows} /> */}
+      <div>
+        {borrows.map((borrow) => (
+          <MyBorrowsTable key={borrow._id} borrow={borrow} />
+        ))}
+      </div>
     </main>
   );
 };

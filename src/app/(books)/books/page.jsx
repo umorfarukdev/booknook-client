@@ -14,8 +14,8 @@ const BooksPage = async () => {
       </header>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        {booksData.map((book) => (
-          <BooksCard key={book._id} book={book} />
+        {booksData.map((book, index) => (
+          <BooksCard key={index} book={book} />
         ))}
       </div>
     </main>

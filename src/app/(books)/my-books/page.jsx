@@ -1,4 +1,5 @@
 import BooksCard from "@/components/books/BooksCard";
+import MyBooksClient from "@/components/books/MyBooksClient";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -7,7 +8,7 @@ const MyBooksPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const user = session?.user
+  const user = session?.user;
 
   if (!user) {
     redirect("/login");
@@ -17,32 +18,18 @@ const MyBooksPage = async () => {
     throw new Error("The signed-in user does not have an email address");
   }
 
-//   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-//   if (!apiUrl) {
-//     throw new Error("NEXT_PUBLIC_API_URL is not configured");
-//   }
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${user.email}`,
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/books/${user.email}`,
   );
 
   if (!response.ok) {
     throw new Error(`Failed to load books: ${response.status}`);
   }
 
-  const myBooks = await response.json();
-
-  console.log(myBooks);
-
-
-//   const myBooks = Array.isArray(booksResponse)
-//     ? booksResponse
-//     : booksResponse && Array.isArray(booksResponse.books)
-//       ? booksResponse.books
-//       : null;
-
-//   if (!Array.isArray(myBooks)) {
-//     throw new Error("The books API returned an invalid response");
-//   }
+  const books = await response.json();
+  // if (!Array.isArray(books)) {
+  //   throw new Error("The books API returned an invalid response");
+  // }
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -55,22 +42,7 @@ const MyBooksPage = async () => {
         </p>
       </header>
 
-      {myBooks.length > 0 ? (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-          {myBooks.map((book) => (
-            <BooksCard key={book._id} book={book} />
-          ))}
-        </div>
-      ) : (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center">
-          <h2 className="text-xl font-semibold text-slate-900">
-            You haven’t added any books yet
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Books you add will appear here.
-          </p>
-        </div>
-      )}
+      <MyBooksClient books={books} />
     </main>
   );
 };

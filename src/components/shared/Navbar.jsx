@@ -1,26 +1,17 @@
+"use client";
 import Link from "next/link";
 import AuthInfo from "./AuthInfo";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const navLinks = (
-    <>
-      <li>
-        <Link href={"/"}>Home</Link>
-      </li>
-      <li>
-        <Link href={"/books"}>All Books</Link>
-      </li>
-      <li>
-        <Link href={"/add-book"}>Add Book</Link>
-      </li>
-      <li>
-        <Link href={"/my-books"}>My Books</Link>
-      </li>
-      <li>
-        <Link href={"/my-borrows"}>My Borrows</Link>
-      </li>
-    </>
-  );
+  const pathName = usePathname();
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "All Books", href: "/books" },
+    { name: "Add Book", href: "/add-book" },
+    { name: "My Books", href: "/my-books" },
+    { name: "My Borrows", href: "/my-borrows" },
+  ];
   return (
     <div>
       <div className="navbar border-b-3 border-gray-200 max-w-7xl mx-auto">
@@ -48,14 +39,40 @@ const Navbar = () => {
               tabIndex={-1}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {navLinks}
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={
+                      pathName === link.href
+                        ? "text-blue-600 font-bold border-b-2 border-blue-600"
+                        : "text-gray-700 hover:text-blue-600"
+                    }
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">BookNook</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            {navLinks}
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={
+                    pathName === link.href
+                      ? "text-blue-600 font-bold border-b-2 border-blue-600"
+                      : "text-gray-700 hover:text-blue-600"
+                  }
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="navbar-end gap-1.5">

@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { signIn } from "@/lib/auth-client";
 import Google from "@/components/shared/Google";
+import { redirect } from "next/navigation";
 
 const LoginPage = () => {
   const handleSignIn = async (e) => {
@@ -30,6 +31,8 @@ const LoginPage = () => {
     });
 
     console.log(data, "signin", error, "error");
+    redirect("/")
+
   };
   return (
     <div className="flex flex-col gap-6 max-w-lg mx-auto my-10">

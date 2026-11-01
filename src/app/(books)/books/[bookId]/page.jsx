@@ -1,18 +1,25 @@
+import BorrowBookButton from "@/components/books/BorrowBookButton";
+import { auth } from "@/lib/auth";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 
 const BookDetailsPage = async ({ params }) => {
   const { bookId } = await params;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`,
+  );
+
+  const session = await auth.api.getSession({ headers: await headers() });
 
   if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
     throw new Error(`Failed to load books: ${response.status}`);
   }
 
   const book = await response.json();
-
-  console.log(book);
-//   const book = books.find((item) => String(item._id) === bookId);
 
   if (!book) {
     notFound();
@@ -81,13 +88,10 @@ const BookDetailsPage = async ({ params }) => {
                 ? `${availableCopies} ${availableCopies === 1 ? "copy" : "copies"} available`
                 : "No copies currently available"}
             </p>
-            <button
-              type="button"
-              disabled={availableCopies <= 0}
-              className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-5 py-3.5 font-semibold text-white transition hover:bg-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:cursor-not-allowed disabled:bg-slate-300"
-            >
-              Borrow This Book
-            </button>
+            <BorrowBookButton
+              book={book}
+              userEmail={session?.user?.email ?? null}
+            />
           </div>
         </div>
       </article>

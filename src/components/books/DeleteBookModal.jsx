@@ -1,0 +1,111 @@
+"use client";
+import { Trash2Icon } from "lucide-react";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
+export default function DeleteBookModal({book}) {
+  const router = useRouter()
+  const handleBookDelete = async () => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    const data = await res.json();
+
+    if (!res.ok || data.deletedCount === 0) {
+      throw new Error("Failed to delete book.");
+    }
+    router.refresh();
+    toast.success("Book deleted successfully.");
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger
+        render={<Button variant="destructive">Delete Book</Button>}
+      />
+      <AlertDialogContent size="sm">
+        <AlertDialogHeader>
+          <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
+            <Trash2Icon />
+          </AlertDialogMedia>
+          <AlertDialogTitle>Delete this book?</AlertDialogTitle>
+          <AlertDialogDescription>
+            {book.title} will be permanently removed from the library.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel variant="outline">Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleBookDelete} variant="destructive">
+            Confirm Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+
+// import { useState } from "react";
+// import { toast } from "react-toastify";
+
+// const DeleteBookModal = ({ book, onClose, onDelete }) => {
+//   const [deleting, setDeleting] = useState(false);
+
+//   return (
+//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4">
+//       <section
+//         role="alertdialog"
+//         aria-modal="true"
+//         aria-labelledby="delete-book-title"
+//         className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
+//       >
+//         <h2 id="delete-book-title" className="text-xl font-bold text-slate-900">
+
+//         </h2>
+
+//         <p className="mt-3 text-slate-600">
+
+//         </p>
+
+//         <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+//           <button
+//             type="button"
+//             onClick={onClose}
+//             disabled={deleting}
+//             className="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+//           >
+//             Cancel
+//           </button>
+
+//           <button
+//             type="button"
+
+//             disabled={deleting}
+//             className="rounded-lg bg-red-600 px-4 py-2.5 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+//           >
+//             {deleting ? "Deleting..." : "Delete book"}
+//           </button>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// };
+
+// export default DeleteBookModal;

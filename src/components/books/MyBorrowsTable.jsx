@@ -1,7 +1,15 @@
 "use client";
-
 import Image from "next/image";
 import ReturnBook from "./ReturnBook";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const formatDate = (date) => {
   if (!date) return "N/A";
@@ -13,78 +21,82 @@ const formatDate = (date) => {
   });
 };
 
-const MyBorrowsTable = ({ borrow }) => {
-  // console.log(borrow);
-
-  // if (borrows.length === 0) {
-  //   return (
-  //     <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center">
-  //       <h2 className="text-xl font-semibold text-slate-900">
-  //         You haven’t borrowed any books yet
-  //       </h2>
-  //       <p className="mt-2 text-slate-600">
-  //         Books you borrow will appear here.
-  //       </p>
-  //     </div>
-  //   );
-  // }
-
+const MyBorrowsTable = ({ borrows }) => {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <table className="w-full min-w-[700px] divide-y divide-slate-200 text-left">
-        <thead className="bg-slate-50">
-          <tr>
-            <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Book
-            </th>
-            <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Title
-            </th>
-            <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Borrow date
-            </th>
-            <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Return date
-            </th>
-            <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Action
-            </th>
-          </tr>
-        </thead>
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-slate-50 hover:bg-slate-50">
+              <TableHead className="px-5 py-4 font-semibold uppercase text-xs">
+                Book
+              </TableHead>
 
-        <tbody className="divide-y divide-slate-100">
-          <tr>
-            <td className="px-5 py-4">
-              <div className="relative h-16 w-12 overflow-hidden rounded-md bg-slate-100">
-                <Image
-                  src={borrow.imageUrl}
-                  alt={`Cover of ${borrow.title}`}
-                  fill
-                  unoptimized
-                  sizes="48px"
-                  className="object-cover"
-                />
-              </div>
-            </td>
+              <TableHead className="px-5 py-4 font-semibold uppercase text-xs">
+                Title
+              </TableHead>
 
-            <td className="px-5 py-4 font-semibold text-slate-900">
-              {borrow.title}
-            </td>
+              <TableHead className="px-5 py-4 font-semibold uppercase text-xs">
+                Borrow Date
+              </TableHead>
 
-            <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">
-              {formatDate(borrow.borrowDate)}
-            </td>
+              <TableHead className="px-5 py-4 font-semibold uppercase text-xs">
+                Return Date
+              </TableHead>
 
-            <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">
-              {formatDate(borrow.returnDate)}
-            </td>
+              <TableHead className="px-5 py-4 text-center font-semibold uppercase text-xs">
+                Action
+              </TableHead>
+            </TableRow>
+          </TableHeader>
 
-            <td className="px-5 py-4">
-              <ReturnBook borrow={borrow} />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <TableBody>
+            {borrows.map((borrow) => (
+              <TableRow
+                key={borrow._id}
+                className="transition-colors hover:bg-slate-50/80"
+              >
+                <TableCell className="px-5 py-3">
+                  <div className="relative h-16 w-12 overflow-hidden rounded-md border bg-slate-100">
+                    {borrow.imageUrl ? (
+                      <Image
+                        src={borrow.imageUrl}
+                        alt={`Cover of ${borrow.title}`}
+                        fill
+                        unoptimized
+                        sizes="48px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-[10px] text-slate-400">
+                        No Image
+                      </div>
+                    )}
+                  </div>
+                </TableCell>
+
+                <TableCell className="min-w-[180px] px-5 py-3">
+                  <p className="font-semibold text-slate-800">
+                    {borrow.title}
+                  </p>
+                </TableCell>
+
+                <TableCell className="whitespace-nowrap px-5 py-3 text-sm text-slate-600">
+                  {formatDate(borrow.borrowDate)}
+                </TableCell>
+
+                <TableCell className="whitespace-nowrap px-5 py-3 text-sm text-slate-600">
+                  {formatDate(borrow.returnDate)}
+                </TableCell>
+
+                <TableCell className="px-5 py-3 text-center">
+                  <ReturnBook borrow={borrow} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

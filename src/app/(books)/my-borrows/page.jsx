@@ -1,20 +1,26 @@
 import MyBorrowsTable from "@/components/books/MyBorrowsTable";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 const MyBorrowsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   const user = session?.user;
+
+  if (!user?.email) {
+    redirect("/login");
+  }
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/borrows/${user.email}`
+    `${process.env.NEXT_PUBLIC_API_URL}/borrows/${user.email}`,
+    {
+      cache: "no-store",
+    },
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to load borrowed books (${response.status})`, {
-      cache: "no-store",
-    });
+    throw new Error(`Failed to load borrowed books (${response.status})`);
   }
 
   const borrows = await response.json();
@@ -30,11 +36,23 @@ const MyBorrowsPage = async () => {
           Keep track of your borrowed books and return dates.
         </p>
       </header>
-      <div>
-        {borrows.map((borrow) => (
-          <MyBorrowsTable key={borrow._id} borrow={borrow} />
-        ))}
-      </div>
+
+      {borrows.length === 0 ? (
+        <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 px-6 py-16 text-center">
+          <h2 className="text-xl font-semibold text-gray-800">
+            No Borrowed Books
+          </h2>
+          <p className="mt-2 text-sm text-gray-500">
+            You have not borrowed any books yet.
+          </p>
+        </div>
+      ) : (
+        <div>
+
+            <MyBorrowsTable borrows={borrows} />
+
+        </div>
+      )}
     </main>
   );
 };

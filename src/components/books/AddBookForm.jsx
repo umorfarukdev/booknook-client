@@ -60,32 +60,6 @@ export default function AddBookForm({ user }) {
     } else {
       toast.error(message);
     }
-
-    // try {
-    //   setLoading(true);
-
-    //   const token = await getTokenClient();
-
-    //   const res = await fetch(`${API_URL}/books`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify(bookData),
-    //   });
-
-    //   const result = await res.json();
-
-    //
-    // } catch (error) {
-    //   const message =
-    //     error instanceof Error ? error.message : "Something went wrong";
-
-    //
-    // } finally {
-    //   setLoading(false);
-    // }
   };
 
   return (

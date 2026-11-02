@@ -27,12 +27,9 @@ const MyBooksPage = async () => {
   }
 
   const books = await response.json();
-  // if (!Array.isArray(books)) {
-  //   throw new Error("The books API returned an invalid response");
-  // }
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+ <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <header className="mb-8 sm:mb-10">
         <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">
           My Books
@@ -42,7 +39,18 @@ const MyBooksPage = async () => {
         </p>
       </header>
 
-      <MyBooksClient books={books} />
+      {books.length === 0 ? (
+        <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 px-6 py-16 text-center">
+          <h2 className="text-xl font-semibold text-gray-800">
+            No Books Found
+          </h2>
+          <p className="mt-2 text-sm text-gray-500">
+            You have not added any books to your library yet.
+          </p>
+        </div>
+      ) : (
+        <MyBooksClient books={books} />
+      )}
     </main>
   );
 };

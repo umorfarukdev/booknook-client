@@ -1,16 +1,21 @@
 import BorrowBookButton from "@/components/books/BorrowBookButton";
 import { auth } from "@/lib/auth";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { headers } from "next/headers";
 
 const BookDetailsPage = async ({ params }) => {
   const { bookId } = await params;
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`,
+    { cache: "no-store" },
   );
 
   const session = await auth.api.getSession({ headers: await headers() });
+
+  if (!session?.user) {
+    redirect("/login");
+  }
 
   if (!response.ok) {
     if (response.status === 404) {

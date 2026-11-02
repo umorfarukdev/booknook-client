@@ -1,7 +1,5 @@
 "use client";
-import BooksCard from "./BooksCard";
-import DeleteBookModal from "./DeleteBookModal";
-import EditBookModal from "./EditBookModal";
+import MyBooksCard from "./MyBookCard";
 
 const MyBooksClient = ({books}) => {
   return (
@@ -9,13 +7,7 @@ const MyBooksClient = ({books}) => {
       {/* Your books grid */}
       {books.map((book) => (
         <div key={book._id}>
-          <BooksCard book={book} />
-
-          <div className="mt-2 px-6 flex justify-between gap-2">
-            <EditBookModal book={book}></EditBookModal>
-
-            <DeleteBookModal book={book}></DeleteBookModal>
-          </div>
+          <MyBooksCard book={book} />
         </div>
       ))}
     </div>

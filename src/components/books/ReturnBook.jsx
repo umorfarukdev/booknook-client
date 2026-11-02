@@ -11,6 +11,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -18,16 +19,20 @@ const AlertDialogBasic = ({ borrow }) => {
   // console.log(borrow);
   const router = useRouter();
   const handleReturnBook = async () => {
-    console.log("return book");
+    const { data, error } = await authClient.token();
+    const token = data?.token;
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/borrows/${borrow._id}`,
       {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        }
       },
     );
 
-    const data = await res.json();
-    console.log(data);
+    const borroData = await res.json();
+    console.log(borroData);
     router.refresh();
     console.log("borrow retuned successfull");
     toast.success("Book returned successfully.");

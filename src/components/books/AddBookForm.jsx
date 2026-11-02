@@ -1,9 +1,9 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const categories = ["Fiction", "Science", "History", "Kids", "Others"];
 
@@ -40,10 +40,15 @@ export default function AddBookForm({ user }) {
       date,
     };
 
+    const { data, error } = await authClient.token();
+    const token = data?.token;
+    console.log(data);
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(addBookData),
     });

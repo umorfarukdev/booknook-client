@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
 
 const getLocalDate = () => {
   const date = new Date();
@@ -36,11 +37,17 @@ const BorrowBookButton = ({ book, userEmail }) => {
     };
     setIsSubmitting(true);
     try {
+
+      const { data, error } = await authClient.token();
+      const token = data?.token;
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/borrows`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
           body: JSON.stringify(borrowsData),
         },
       );

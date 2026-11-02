@@ -12,10 +12,18 @@ const MyBorrowsPage = async () => {
   if (!user?.email) {
     redirect("/login");
   }
+  const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = jwtToken?.token;
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/borrows/${user.email}`,
     {
       cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
   );
 

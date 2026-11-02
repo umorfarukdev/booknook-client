@@ -15,6 +15,7 @@ import {
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -36,12 +37,16 @@ const EditBookModal = ({ book }) => {
       description: formData.get("description"),
     };
 
+    const {data, error} = await authClient.token()
+    const token = data?.token;
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,
       {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(updateBook),
       },

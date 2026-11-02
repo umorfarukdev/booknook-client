@@ -16,18 +16,25 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
-export default function DeleteBookModal({book}) {
-  const router = useRouter()
+export default function DeleteBookModal({ book }) {
+  const router = useRouter();
   const handleBookDelete = async () => {
+    const { data, error } = await authClient.token();
+    const token = data?.token;
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,
       {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       },
     );
 
-    const data = await res.json();
+    const bookData = await res.json();
+    console.log(bookData);
 
     if (!res.ok || data.deletedCount === 0) {
       throw new Error("Failed to delete book.");

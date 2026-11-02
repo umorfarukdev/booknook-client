@@ -2,23 +2,15 @@ import Link from "next/link";
 import BooksCard from "./BooksCard";
 
 const NewestBooks = async () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-  if (!apiUrl) {
-    throw new Error("NEXT_PUBLIC_API_URL is not configured");
-  }
-
-  const response = await fetch(`${apiUrl.replace(/\/$/, "")}/newest-books`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/newest-books`,
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to load newest books: ${response.status}`);
   }
 
   const newestBooks = await response.json();
-
-  if (!Array.isArray(newestBooks)) {
-    throw new Error("The newest books API returned an invalid response");
-  }
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">

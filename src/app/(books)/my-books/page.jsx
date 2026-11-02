@@ -1,4 +1,3 @@
-import BooksCard from "@/components/books/BooksCard";
 import MyBooksClient from "@/components/books/MyBooksClient";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
@@ -18,8 +17,18 @@ const MyBooksPage = async () => {
     throw new Error("The signed-in user does not have an email address");
   }
 
+  const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = jwtToken?.token;
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/books/${user.email}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }
   );
 
   if (!response.ok) {

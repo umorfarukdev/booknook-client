@@ -5,10 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 
 const Google = () => {
   const handleGoogleSignIn = async () => {
-    const data = await signIn.social({
+    await signIn.social({
       provider: "google",
     });
-    console.log(data);
   };
   return (
     <Button variant="outline" type="button" onClick={handleGoogleSignIn}>

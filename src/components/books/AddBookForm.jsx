@@ -42,7 +42,6 @@ export default function AddBookForm({ user }) {
 
     const { data, error } = await authClient.token();
     const token = data?.token;
-    console.log(data);
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
       method: "POST",

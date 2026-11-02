@@ -26,7 +26,7 @@ const LoginPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const signInData = Object.fromEntries(formData.entries());
-    const { data, error } = await signIn.email({
+    const { data } = await signIn.email({
       email: signInData.email,
       password: signInData.password,
     });
@@ -35,8 +35,6 @@ const LoginPage = () => {
       toast.success("Login successful!");
       redirect("/");
     }
-
-    console.log(data, "signin", error, "error");
   };
   return (
     <div className="flex flex-col gap-6 max-w-lg mx-auto my-10">

@@ -31,13 +31,18 @@ const BorrowBookButton = ({ book, userEmail }) => {
     const data = Object.fromEntries(formData.entries());
 
     const borrowsData = {
+      bookId: book._id,
       userEmail,
-      ...book,
-      ...data,
+      title: book.title,
+      author: book.author,
+      category: book.category,
+      imageUrl: book.imageUrl,
+      description: book.description,
+      borrowDate: data.borrowDate,
+      returnDate: data.returnDate,
     };
     setIsSubmitting(true);
     try {
-
       const { data, error } = await authClient.token();
       const token = data?.token;
       const response = await fetch(
@@ -53,7 +58,13 @@ const BorrowBookButton = ({ book, userEmail }) => {
       );
 
       if (!response.ok) {
-        const errorMessage = await response.text();
+        let errorMessage;
+        try {
+          const errData = await response.json();
+          errorMessage = errData.message;
+        } catch {
+          errorMessage = await response.text();
+        }
         throw new Error(
           errorMessage || `Failed to borrow book (${response.status})`,
         );
@@ -83,7 +94,9 @@ const BorrowBookButton = ({ book, userEmail }) => {
         }}
         className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-5 py-3.5 font-semibold text-white transition hover:bg-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:cursor-not-allowed disabled:bg-slate-300"
       >
-        Borrow This Book
+        {Number(book.availableCopies ?? 0) <= 0
+          ? "Not Available"
+          : "Borrow This Book"}
       </button>
 
       {isOpen && (

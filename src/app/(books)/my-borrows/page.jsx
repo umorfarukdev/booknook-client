@@ -32,7 +32,6 @@ const MyBorrowsPage = async () => {
   }
 
   const borrows = await response.json();
-  console.log(borrows);
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -56,9 +55,7 @@ const MyBorrowsPage = async () => {
         </div>
       ) : (
         <div>
-
-            <MyBorrowsTable borrows={borrows} />
-
+          <MyBorrowsTable borrows={borrows} />
         </div>
       )}
     </main>

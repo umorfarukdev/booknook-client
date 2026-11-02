@@ -16,12 +16,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const AlertDialogBasic = ({ borrow }) => {
-  // console.log(borrow);
   const router = useRouter();
   const handleReturnBook = async () => {
-    const { data, error } = await authClient.token();
+    const { data } = await authClient.token();
     const token = data?.token;
-    const res = await fetch(
+    await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/borrows/${borrow._id}`,
       {
         method: "DELETE",
@@ -31,10 +30,7 @@ const AlertDialogBasic = ({ borrow }) => {
       },
     );
 
-    const borroData = await res.json();
-    console.log(borroData);
     router.refresh();
-    console.log("borrow retuned successfull");
     toast.success("Book returned successfully.");
   };
   return (

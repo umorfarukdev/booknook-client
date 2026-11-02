@@ -21,7 +21,7 @@ import { authClient } from "@/lib/auth-client";
 export default function DeleteBookModal({ book }) {
   const router = useRouter();
   const handleBookDelete = async () => {
-    const { data, error } = await authClient.token();
+    const { data } = await authClient.token();
     const token = data?.token;
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,
@@ -33,10 +33,7 @@ export default function DeleteBookModal({ book }) {
       },
     );
 
-    const bookData = await res.json();
-    console.log(bookData);
-
-    if (!res.ok || data.deletedCount === 0) {
+    if (!res.ok) {
       throw new Error("Failed to delete book.");
     }
     router.refresh();
@@ -68,51 +65,3 @@ export default function DeleteBookModal({ book }) {
     </AlertDialog>
   );
 }
-
-// import { useState } from "react";
-// import { toast } from "react-toastify";
-
-// const DeleteBookModal = ({ book, onClose, onDelete }) => {
-//   const [deleting, setDeleting] = useState(false);
-
-//   return (
-//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4">
-//       <section
-//         role="alertdialog"
-//         aria-modal="true"
-//         aria-labelledby="delete-book-title"
-//         className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
-//       >
-//         <h2 id="delete-book-title" className="text-xl font-bold text-slate-900">
-
-//         </h2>
-
-//         <p className="mt-3 text-slate-600">
-
-//         </p>
-
-//         <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-//           <button
-//             type="button"
-//             onClick={onClose}
-//             disabled={deleting}
-//             className="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
-//           >
-//             Cancel
-//           </button>
-
-//           <button
-//             type="button"
-
-//             disabled={deleting}
-//             className="rounded-lg bg-red-600 px-4 py-2.5 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
-//           >
-//             {deleting ? "Deleting..." : "Delete book"}
-//           </button>
-//         </div>
-//       </section>
-//     </div>
-//   );
-// };
-
-// export default DeleteBookModal;

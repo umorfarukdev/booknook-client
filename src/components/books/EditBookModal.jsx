@@ -37,7 +37,7 @@ const EditBookModal = ({ book }) => {
       description: formData.get("description"),
     };
 
-    const {data, error} = await authClient.token()
+    const { data } = await authClient.token();
     const token = data?.token;
 
     const res = await fetch(
@@ -55,9 +55,7 @@ const EditBookModal = ({ book }) => {
     if (!res.ok) {
       throw new Error(data.message || `Failed to update book (${res.status})`);
     }
-    const updatedBook = await res.json();
 
-    console.log("update book successfull", updatedBook);
     router.refresh();
     toast.success("Book updated successfully.");
   };

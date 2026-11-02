@@ -21,23 +21,21 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const RegisterPage = () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const signUpData = Object.fromEntries(formData.entries());
+    await signUp.email({
+      name: signUpData.name,
+      email: signUpData.email,
+      password: signUpData.password,
+      image: signUpData.image,
+      autoSignIn: false,
+    });
 
-    const handleSignUp = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const signUpData = Object.fromEntries(formData.entries());
-        const {data, error} = await signUp.email({
-            name: signUpData.name,
-            email: signUpData.email,
-            password: signUpData.password,
-            image: signUpData.image,
-            autoSignIn: false
-        })
+    redirect("/login");
+  };
 
-        console.log(data, "signup", error, "error");
-        redirect("/login")
-
-    }
   return (
     <div className="flex flex-col gap-6 max-w-lg mx-auto my-10">
       <Card>

@@ -19,6 +19,7 @@ import Link from "next/link";
 import { signIn } from "@/lib/auth-client";
 import Google from "@/components/shared/Google";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const handleSignIn = async (e) => {
@@ -30,9 +31,12 @@ const LoginPage = () => {
       password: signInData.password,
     });
 
-    console.log(data, "signin", error, "error");
-    redirect("/")
+    if (data) {
+      toast.success("Login successful!");
+      redirect("/");
+    }
 
+    console.log(data, "signin", error, "error");
   };
   return (
     <div className="flex flex-col gap-6 max-w-lg mx-auto my-10">

@@ -6,9 +6,18 @@ import { headers } from "next/headers";
 
 const BookDetailsPage = async ({ params }) => {
   const { bookId } = await params;
+
+  const jwtToken = await auth.api.getToken({ headers: await headers() });
+  const token = jwtToken?.token;
+  console.log(token);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`,
-    { cache: "no-store" },
+    {
+      headers: {
+        authorization: `Bearer ${token}`
+      },
+      cache: "no-store",
+    },
   );
 
   const session = await auth.api.getSession({ headers: await headers() });

@@ -31,6 +31,7 @@ const RegisterPage = () => {
             email: signUpData.email,
             password: signUpData.password,
             image: signUpData.image,
+            autoSignIn: false
         })
 
         console.log(data, "signup", error, "error");

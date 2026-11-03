@@ -104,6 +104,7 @@ const BookDetailsPage = async ({ params }) => {
             </p>
             <BorrowBookButton
               book={book}
+              userName={session?.user?.name}
               userEmail={session?.user?.email ?? null}
             />
           </div>

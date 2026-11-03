@@ -13,7 +13,7 @@ const getLocalDate = () => {
   return `${year}-${month}-${day}`;
 };
 
-const BorrowBookButton = ({ book, userEmail }) => {
+const BorrowBookButton = ({ book, userEmail, userName }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,6 +33,7 @@ const BorrowBookButton = ({ book, userEmail }) => {
     const borrowsData = {
       bookId: book._id,
       userEmail,
+      userName,
       title: book.title,
       author: book.author,
       category: book.category,
@@ -118,6 +119,15 @@ const BorrowBookButton = ({ book, userEmail }) => {
             </p>
 
             <form onSubmit={handleBorrowBook} className="mt-6 space-y-4">
+              <label className="block text-sm font-medium text-slate-700">
+                User name
+                <input
+                  type="name"
+                  value={userName}
+                  readOnly
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-slate-600"
+                />
+              </label>
               <label className="block text-sm font-medium text-slate-700">
                 User email
                 <input

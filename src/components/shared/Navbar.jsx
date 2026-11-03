@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import AuthInfo from "./AuthInfo";
 import { usePathname } from "next/navigation";
 
@@ -13,8 +14,8 @@ const Navbar = () => {
     { name: "My Borrows", href: "/my-borrows" },
   ];
   return (
-    <div>
-      <div className="navbar border-b-3 border-gray-200 max-w-7xl mx-auto">
+    <div className="border-b-3 border-base-300 bg-base-100">
+      <div className="navbar max-w-7xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -46,7 +47,7 @@ const Navbar = () => {
                     className={
                       pathName === link.href
                         ? "text-blue-600 font-bold border-b-2 border-blue-600"
-                        : "text-gray-700 hover:text-blue-600"
+                        : "text-base-content hover:text-blue-600"
                     }
                   >
                     {link.name}
@@ -55,7 +56,20 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">BookNook</a>
+          <Link
+            href="/"
+            className="btn btn-ghost px-2 text-xl"
+            aria-label="BookNook home"
+          >
+            <Image
+              src="/booknook.png"
+              alt="BookNook logo"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-lg object-cover"
+            />
+            <span className="font-bold">BookNook</span>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -66,7 +80,7 @@ const Navbar = () => {
                   className={
                     pathName === link.href
                       ? "text-blue-600 font-bold border-b-2 border-blue-600"
-                      : "text-gray-700 hover:text-blue-600"
+                      : "text-base-content hover:text-blue-600"
                   }
                 >
                   {link.name}

@@ -18,22 +18,36 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { signIn } from "@/lib/auth-client";
 import Google from "@/components/shared/Google";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const LoginPage = () => {
+  const router = useRouter();
   const handleSignIn = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const signInData = Object.fromEntries(formData.entries());
-    const { data } = await signIn.email({
-      email: signInData.email,
-      password: signInData.password,
-    });
+    try {
+      const formData = new FormData(e.target);
+      const signInData = Object.fromEntries(formData.entries());
 
-    if (data) {
-      toast.success("Login successful!");
-      redirect("/");
+      const result = await signIn.email({
+        email: signInData.email,
+        password: signInData.password,
+      });
+
+      if (result?.error) {
+        toast.error(result.error.message || "Login failed!");
+        return;
+      }
+
+      if (result?.data) {
+        toast.success("Login successful!");
+
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+      }
+    } catch (error) {
+      toast.error(error.message || "Something went wrong!");
     }
   };
   return (

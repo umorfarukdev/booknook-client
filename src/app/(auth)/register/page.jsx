@@ -15,25 +15,60 @@ import {
   FieldLabel,
   FieldSeparator,
 } from "@/components/ui/field";
+import { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { Input } from "@/components/ui/input";
 import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasLowercase = /[a-z]/.test(password);
+  const hasMinLength = password.length >= 6;
+
+  const isValidPassword = hasUppercase && hasLowercase && hasMinLength;
+
   const handleSignUp = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const signUpData = Object.fromEntries(formData.entries());
-    await signUp.email({
-      name: signUpData.name,
-      email: signUpData.email,
-      password: signUpData.password,
-      image: signUpData.image,
-      autoSignIn: false,
-    });
 
-    redirect("/login");
+    if (!isValidPassword) {
+      toast.error("Please enter a valid password.");
+      return;
+    }
+    try {
+      const formData = new FormData(e.target);
+      const signUpData = Object.fromEntries(formData.entries());
+
+      const result = await signUp.email({
+        name: signUpData.name,
+        email: signUpData.email,
+        password: signUpData.password,
+        image: signUpData.image,
+      });
+
+      if (result?.error) {
+        toast.error(result.error.message || "Registration failed!");
+        return;
+      }
+
+      toast.success("Registration successful! Please login.");
+
+      setTimeout(() => {
+        redirect("/login");
+      }, 1500);
+    } catch (error) {
+      toast.error(error.message || "Something went wrong!");
+    }
   };
 
   return (
@@ -81,16 +116,47 @@ const RegisterPage = () => {
                   required
                 />
               </Field>
-              <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+              <Field className="max-w-sm">
+                <FieldLabel htmlFor="inline-end-input">Password</FieldLabel>
 
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  required
-                />
+                <InputGroup>
+                  <InputGroupInput
+                    name="password"
+                    id="inline-end-input"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+
+                  <InputGroupAddon
+                    align="inline-end"
+                    className="cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                  </InputGroupAddon>
+                </InputGroup>
+
+                <FieldDescription>
+                  <span
+                    className={hasUppercase ? "text-green-600" : "text-red-500"}
+                  >
+                    {hasUppercase ? "✓" : "✗"} One uppercase letter
+                  </span>
+                  <br />
+                  <span
+                    className={hasLowercase ? "text-green-600" : "text-red-500"}
+                  >
+                    {hasLowercase ? "✓" : "✗"} One lowercase letter
+                  </span>
+                  <br />
+                  <span
+                    className={hasMinLength ? "text-green-600" : "text-red-500"}
+                  >
+                    {hasMinLength ? "✓" : "✗"} At least 6 characters
+                  </span>
+                </FieldDescription>
               </Field>
               <Field>
                 <Button type="submit">Register</Button>

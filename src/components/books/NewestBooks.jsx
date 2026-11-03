@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import BooksCard from "./BooksCard";
 
 const NewestBooks = async () => {
@@ -45,7 +46,18 @@ const NewestBooks = async () => {
         </div>
       )}
 
-      <Link href={"/books"}>See All Books</Link>
+      <div className="mt-10 flex justify-center sm:mt-12">
+        <Link
+          href="/books"
+          className="group inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-indigo-600 hover:shadow-lg hover:shadow-indigo-600/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          See All Books
+          <ArrowRight
+            aria-hidden="true"
+            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+          />
+        </Link>
+      </div>
     </section>
   );
 };

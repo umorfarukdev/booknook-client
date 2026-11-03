@@ -4,6 +4,11 @@ import Reviews from "@/components/home/Reviews.jsx";
 import Borrowing from "@/components/home/Borrowing.jsx";
 import NewestBooks from "@/components/books/NewestBooks.jsx";
 
+export const metadata = {
+  title: "BookNook | Home",
+  description: "A community library to discover, borrow, and share books.",
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50">

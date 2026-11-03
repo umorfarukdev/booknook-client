@@ -3,8 +3,12 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-const AddBookPage = async () => {
+export const metadata = {
+    title: "BookNook | Add Book",
+    description: "Add a new book to the BookNook library collection.",
+};
 
+const AddBookPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
     })
@@ -16,7 +20,7 @@ const AddBookPage = async () => {
     }
     return (
         <main>
-            <AddBookForm user={user}></AddBookForm>        
+            <AddBookForm user={user}></AddBookForm>
         </main>
     );
 };

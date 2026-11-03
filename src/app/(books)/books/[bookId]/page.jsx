@@ -4,6 +4,28 @@ import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { headers } from "next/headers";
 
+export async function generateMetadata({ params }) {
+  const { bookId } = await params;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`);
+    if (res.ok) {
+      const book = await res.json();
+      if (book?.title) {
+        return {
+          title: `BookNook | ${book.title}`,
+          description: book.description || `Read about ${book.title} on BookNook.`,
+        };
+      }
+    }
+  } catch {
+    // fallback
+  }
+  return {
+    title: "BookNook | Book Details",
+    description: "View book details in the BookNook library.",
+  };
+}
+
 const BookDetailsPage = async ({ params }) => {
   const { bookId } = await params;
 

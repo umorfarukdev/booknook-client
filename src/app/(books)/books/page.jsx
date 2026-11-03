@@ -1,5 +1,9 @@
 import BooksCard from "@/components/books/BooksCard";
-import React from "react";
+
+export const metadata = {
+  title: "BookNook | All Books",
+  description: "Browse all books available in the BookNook library.",
+};
 
 const BooksPage = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`);

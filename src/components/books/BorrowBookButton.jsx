@@ -154,7 +154,9 @@ const BorrowBookButton = ({ book, userEmail, userName }) => {
                   type="date"
                   min={borrowDate}
                   required
-                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2.5"
+                  className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 
+    bg-white dark:bg-slate-800 text-slate-900 dark:text-white 
+    px-3 py-2.5 color-scheme-light dark:color-scheme-dark"
                 />
               </label>
 

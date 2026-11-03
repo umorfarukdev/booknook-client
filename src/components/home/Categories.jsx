@@ -11,8 +11,8 @@ const categories = [
 
 const Categories = () => {
   return (
-    <section className="bg-slate-900 px-4 py-16 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section className="bg-slate-900 px-4 max-w-7xl mx-auto py-16 text-white sm:px-6 lg:px-8">
+      <div className="">
         <div className="mb-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-400">
             Top categories

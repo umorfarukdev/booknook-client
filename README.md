@@ -14,7 +14,7 @@
 - Book Availability – Track available book copies.
 - Responsive Design – User-friendly interface across different devices.
 
-##🛠️ Technologies Used
+## 🛠️ Technologies Used
 ### Frontend
 - Next.js
 - React.js

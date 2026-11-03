@@ -54,11 +54,11 @@ const MyBooksPage = async () => {
       </header>
 
       {books.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 px-6 py-16 text-center">
-          <h2 className="text-xl font-semibold text-gray-800">
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-16 text-center">
+          <h2 className="text-xl font-semibold text-slate-900">
             No Books Found
           </h2>
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-slate-600">
             You have not added any books to your library yet.
           </p>
         </div>

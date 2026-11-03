@@ -14,17 +14,15 @@ const NewestBooks = async () => {
   const newestBooks = await response.json();
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <header className="mb-8 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600">
-            Fresh on the shelves
-          </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Newest books
-          </h2>
-        </div>
-        <p className="max-w-md text-sm text-slate-600 sm:text-base">
+    <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <header className="mb-8 text-center sm:mb-10">
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-600">
+          Fresh on the shelves
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          Newest books
+        </h2>
+        <p className="mx-auto mt-3 max-w-md text-sm text-slate-600 sm:text-base">
           Take a look at the latest books added to the BookNook community.
         </p>
       </header>
@@ -49,7 +47,7 @@ const NewestBooks = async () => {
       <div className="mt-10 flex justify-center sm:mt-12">
         <Link
           href="/books"
-          className="group inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-indigo-600 hover:shadow-lg hover:shadow-indigo-600/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           See All Books
           <ArrowRight

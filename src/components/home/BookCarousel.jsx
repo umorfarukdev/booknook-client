@@ -36,7 +36,7 @@ const slides = [
 const BookCarousel = () => {
   return (
     <section className="px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={24}
@@ -54,7 +54,7 @@ const BookCarousel = () => {
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
               <div
-                className="relative min-h-[420px] overflow-hidden rounded-[28px] border border-slate-200 bg-slate-900 shadow-[0_30px_65px_-30px_rgba(15,23,42,0.7)]"
+                className="relative min-h-[420px] overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 shadow-[0_30px_65px_-30px_rgba(15,23,42,0.7)]"
                 style={{
                   backgroundImage: `linear-gradient(90deg, rgba(15,23,42,0.8), rgba(15,23,42,0.25)), url(${slide.image})`,
                   backgroundSize: "cover",

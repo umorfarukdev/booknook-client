@@ -67,10 +67,10 @@ export default function AddBookForm({ user }) {
   };
 
   return (
-    <div className="mx-auto my-10 max-w-3xl rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-10">
+    <div className="mx-auto my-10 max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Add a New Book</h1>
-        <p className="mt-2 text-gray-500">
+        <h1 className="text-3xl font-bold text-slate-900">Add a New Book</h1>
+        <p className="mt-2 text-slate-600">
           Add a new book to your BookNook library.
         </p>
       </div>
@@ -78,7 +78,7 @@ export default function AddBookForm({ user }) {
       <form onSubmit={handleAddBook} className="space-y-5">
         {/* Book Title */}
         <div>
-          <label className="mb-2 block font-medium text-gray-700">
+          <label className="mb-2 block font-medium text-slate-700">
             Book Title
           </label>
           <input
@@ -86,13 +86,13 @@ export default function AddBookForm({ user }) {
             name="title"
             placeholder="Enter book title"
             required
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
           />
         </div>
 
         {/* Author */}
         <div>
-          <label className="mb-2 block font-medium text-gray-700">
+          <label className="mb-2 block font-medium text-slate-700">
             Author Name
           </label>
           <input
@@ -100,20 +100,20 @@ export default function AddBookForm({ user }) {
             name="author"
             placeholder="Enter author name"
             required
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
           />
         </div>
 
         {/* Category */}
         <div>
-          <label className="mb-2 block font-medium text-gray-700">
+          <label className="mb-2 block font-medium text-slate-700">
             Category
           </label>
           <select
             name="category"
             required
             defaultValue=""
-            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
+            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
           >
             <option value="" disabled>
               Select a category
@@ -129,7 +129,7 @@ export default function AddBookForm({ user }) {
 
         {/* Image URL */}
         <div>
-          <label className="mb-2 block font-medium text-gray-700">
+          <label className="mb-2 block font-medium text-slate-700">
             Book Image URL
           </label>
           <input
@@ -137,13 +137,13 @@ export default function AddBookForm({ user }) {
             name="imageUrl"
             placeholder="https://example.com/book-image.jpg"
             required
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="mb-2 block font-medium text-gray-700">
+          <label className="mb-2 block font-medium text-slate-700">
             Description
           </label>
           <textarea
@@ -151,13 +151,13 @@ export default function AddBookForm({ user }) {
             rows={5}
             placeholder="Write a short description about this book..."
             required
-            className="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+            className="w-full resize-y rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
           />
         </div>
 
         {/* Total Copies */}
         <div>
-          <label className="mb-2 block font-medium text-gray-700">
+          <label className="mb-2 block font-medium text-slate-700">
             Total Copies
           </label>
           <input
@@ -166,33 +166,33 @@ export default function AddBookForm({ user }) {
             min="1"
             defaultValue="1"
             required
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
           />
         </div>
 
         {/* Added By */}
         <div className="grid gap-5 md:grid-cols-2">
           <div>
-            <label className="mb-2 block font-medium text-gray-700">
+            <label className="mb-2 block font-medium text-slate-700">
               Added By
             </label>
             <input
               type="text"
               value={user.name}
               readOnly
-              className="w-full rounded-lg border border-gray-200 bg-gray-100 px-4 py-3 text-gray-600"
+              className="w-full rounded-lg border border-slate-200 bg-slate-100 px-4 py-3 text-slate-600"
             />
           </div>
 
           <div>
-            <label className="mb-2 block font-medium text-gray-700">
+            <label className="mb-2 block font-medium text-slate-700">
               User Email
             </label>
             <input
               type="email"
               value={user.email}
               readOnly
-              className="w-full rounded-lg border border-gray-200 bg-gray-100 px-4 py-3 text-gray-600"
+              className="w-full rounded-lg border border-slate-200 bg-slate-100 px-4 py-3 text-slate-600"
             />
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function AddBookForm({ user }) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "Adding Book..." : "Add Book"}
         </button>

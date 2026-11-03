@@ -97,7 +97,7 @@ const ProfilePage = async () => {
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       {/* Header Profile Card */}
       <Card className="overflow-hidden border border-slate-200 bg-white shadow-sm">
-        <div className="h-32 bg-gradient-to-r from-blue-600 to-indigo-700 sm:h-40" />
+        <div className="h-32 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 sm:h-40" />
         <CardContent className="relative px-6 pb-6 pt-0 sm:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between -mt-16 sm:-mt-20 gap-4">
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4">
@@ -182,7 +182,7 @@ const ProfilePage = async () => {
             <CardTitle className="text-sm font-semibold text-slate-600">
               Active Borrows
             </CardTitle>
-            <div className="rounded-lg bg-indigo-50 p-2 text-indigo-600">
+            <div className="rounded-lg bg-blue-50 p-2 text-blue-600">
               <BookMarked size={20} />
             </div>
           </CardHeader>
@@ -197,7 +197,7 @@ const ProfilePage = async () => {
           <CardFooter className="pt-0">
             <Link
               href="/my-borrows"
-              className={cn(buttonVariants({ variant: "link", size: "xs" }), "px-0 text-indigo-600 font-semibold flex items-center gap-1")}
+              className={cn(buttonVariants({ variant: "link", size: "xs" }), "px-0 text-blue-600 font-semibold flex items-center gap-1")}
             >
               View borrowed books <ArrowRight size={13} />
             </Link>

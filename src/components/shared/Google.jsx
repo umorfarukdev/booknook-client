@@ -1,6 +1,5 @@
 import { signIn } from "@/lib/auth-client";
-import { Button } from "@base-ui/react";
-import React from "react";
+import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 
 const Google = () => {
@@ -9,12 +8,16 @@ const Google = () => {
       provider: "google",
     });
   };
+
   return (
-    <Button variant="outline" type="button" onClick={handleGoogleSignIn}>
-      <div className="flex btn rounded-xl justify-center items-center gap-1">
-        <FcGoogle className="text-2xl"></FcGoogle>
-        <span className="text-xl">Continue with Google</span>
-      </div>
+    <Button
+      variant="outline"
+      type="button"
+      onClick={handleGoogleSignIn}
+      className="h-12 w-full gap-2 text-base"
+    >
+      <FcGoogle aria-hidden="true" className="text-2xl" />
+      Continue with Google
     </Button>
   );
 };

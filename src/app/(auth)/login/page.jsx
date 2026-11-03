@@ -51,7 +51,7 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="flex flex-col gap-6 max-w-lg mx-auto my-10">
+    <div className="mx-auto my-10 flex w-full max-w-sm flex-col gap-6 px-4 sm:px-0">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
@@ -97,7 +97,9 @@ const LoginPage = () => {
                 />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit" className="h-12 w-full text-base">
+                  Login
+                </Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account?{" "}
                   <Link href="/register">Register</Link>
@@ -107,10 +109,6 @@ const LoginPage = () => {
           </form>
         </CardContent>
       </Card>
-      <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
-      </FieldDescription>
     </div>
   );
 };

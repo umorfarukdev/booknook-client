@@ -18,12 +18,12 @@ const steps = [
 const Borrowing = () => {
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-600">
             How it works
           </p>
-          <h3 className="mt-2 text-3xl font-bold text-slate-900">
+          <h3 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
             Borrowing made simple
           </h3>
         </div>
@@ -32,7 +32,7 @@ const Borrowing = () => {
           {steps.map((step, index) => (
             <div
               key={step.title}
-              className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm"
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-lg font-bold text-white">
                 {index + 1}

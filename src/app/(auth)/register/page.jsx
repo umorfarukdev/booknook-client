@@ -72,7 +72,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-lg mx-auto my-10">
+    <div className="mx-auto my-10 flex w-full max-w-sm flex-col gap-6 px-4 sm:px-0">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Create an account</CardTitle>
@@ -116,7 +116,7 @@ const RegisterPage = () => {
                   required
                 />
               </Field>
-              <Field className="max-w-sm">
+              <Field>
                 <FieldLabel htmlFor="inline-end-input">Password</FieldLabel>
 
                 <InputGroup>
@@ -159,7 +159,9 @@ const RegisterPage = () => {
                 </FieldDescription>
               </Field>
               <Field>
-                <Button type="submit">Register</Button>
+                <Button type="submit" className="h-12 w-full text-base">
+                  Register
+                </Button>
                 <FieldDescription className="text-center">
                   Already have an account? <Link href="/login">Login</Link>
                 </FieldDescription>
@@ -168,10 +170,6 @@ const RegisterPage = () => {
           </form>
         </CardContent>
       </Card>
-      <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
-      </FieldDescription>
     </div>
   );
 };

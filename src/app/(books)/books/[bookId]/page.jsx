@@ -64,7 +64,7 @@ const BookDetailsPage = async ({ params }) => {
   const availableCopies = Number(book.availableCopies ?? 0);
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <article className="grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm md:grid-cols-2">
         <div className="relative min-h-80 bg-slate-100 sm:min-h-[480px]">
           {book.imageUrl ? (
@@ -89,7 +89,7 @@ const BookDetailsPage = async ({ params }) => {
         </div>
 
         <div className="flex flex-col p-6 sm:p-8 lg:p-12">
-          <p className="w-fit rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          <p className="w-fit rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-700">
             {book.category}
           </p>
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">

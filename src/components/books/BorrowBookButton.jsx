@@ -93,7 +93,7 @@ const BorrowBookButton = ({ book, userEmail, userName }) => {
           }
           setIsOpen(true);
         }}
-        className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-5 py-3.5 font-semibold text-white transition hover:bg-slate-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:cursor-not-allowed disabled:bg-slate-300"
+        className="inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3.5 font-semibold text-white transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed disabled:bg-slate-300"
       >
         {Number(book.availableCopies ?? 0) <= 0
           ? "Not Available"
@@ -163,14 +163,14 @@ const BorrowBookButton = ({ book, userEmail, userName }) => {
                   type="button"
                   onClick={() => setIsOpen(false)}
                   disabled={isSubmitting}
-                  className="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                  className="rounded-xl border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-700 disabled:opacity-50"
+                  className="rounded-xl bg-blue-600 px-4 py-2.5 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
                 >
                   {isSubmitting ? "Submitting..." : "Confirm borrow"}
                 </button>

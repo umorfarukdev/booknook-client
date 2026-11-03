@@ -7,7 +7,7 @@ import DeleteBookModal from "./DeleteBookModal";
 
 const MyBooksCard = ({ book }) => {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
 
       {/* Book Cover */}
       <div className="relative h-64 overflow-hidden bg-slate-100 sm:h-72">
@@ -29,7 +29,7 @@ const MyBooksCard = ({ book }) => {
 
         {/* Category Badge */}
         <div className="absolute left-4 top-4">
-          <span className="rounded-full border border-white/60 bg-white/90 px-3 py-1.5 text-xs font-semibold capitalize text-indigo-700 shadow-sm backdrop-blur">
+          <span className="rounded-full border border-white/60 bg-white/90 px-3 py-1.5 text-xs font-semibold capitalize text-blue-700 shadow-sm backdrop-blur">
             {book.category}
           </span>
         </div>
@@ -38,7 +38,7 @@ const MyBooksCard = ({ book }) => {
       {/* Book Information */}
       <div className="flex flex-1 flex-col p-5">
 
-        <h2 className="line-clamp-2 text-xl font-bold leading-snug text-slate-900 transition-colors group-hover:text-indigo-700">
+        <h2 className="line-clamp-2 text-xl font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-700">
           {book.title}
         </h2>
 
@@ -50,7 +50,7 @@ const MyBooksCard = ({ book }) => {
         {/* View Details */}
         <Link
           href={`/books/${book._id}`}
-          className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           <BookOpen size={17} />
           View Details

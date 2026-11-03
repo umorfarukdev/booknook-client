@@ -14,11 +14,16 @@ const Navbar = () => {
     { name: "My Borrows", href: "/my-borrows" },
   ];
   return (
-    <div className="border-b-3 border-base-300 bg-base-100">
-      <div className="navbar max-w-7xl mx-auto">
+    <header className="sticky top-0 z-50 w-full border-b border-base-300 bg-base-100/95 backdrop-blur shadow-xs">
+      <div className="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden"
+              aria-label="Toggle navigation menu"
+            >
               <svg
                 aria-label="Menu"
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,8 +42,8 @@ const Navbar = () => {
               </svg>
             </div>
             <ul
-              tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow-xl border border-base-200"
             >
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -90,10 +95,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-1.5">
-          <AuthInfo></AuthInfo>
+          <AuthInfo />
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

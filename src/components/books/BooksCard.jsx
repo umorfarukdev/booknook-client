@@ -30,7 +30,7 @@ const BooksCard = ({ book }) => {
         <h2 className="mt-2 line-clamp-2 text-lg font-bold text-slate-900 sm:text-xl">
           {book.title}
         </h2>
-        <p className="mt-1 text-sm text-slate-600">by {book.author}</p>
+        <p className="my-2 text-sm text-slate-600">by {book.author}</p>
 
         <Link
           href={`/books/${book._id}`}

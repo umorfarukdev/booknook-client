@@ -42,7 +42,7 @@ const MyBooksCard = ({ book }) => {
           {book.title}
         </h2>
 
-        <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
+        <div className="my-3 flex items-center gap-2 text-sm text-slate-500">
           <UserRound size={16} />
           <span className="line-clamp-1">by {book.author}</span>
         </div>

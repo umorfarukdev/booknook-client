@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 
 const BooksCard = ({ book }) => {
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
       <div className="relative h-56 overflow-hidden bg-slate-100 sm:h-64 lg:h-72">

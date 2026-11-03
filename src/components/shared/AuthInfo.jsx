@@ -17,6 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { toast } from "react-toastify";
 
 const AuthInfo = () => {
   const { data: session, isPending } = useSession();
@@ -30,6 +31,7 @@ const AuthInfo = () => {
     await signOut();
     router.push("/");
     router.refresh();
+    toast.success("Logout user Successfully")
   };
 
   const user = session?.user;

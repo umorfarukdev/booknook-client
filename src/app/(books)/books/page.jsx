@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 const BooksPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, { cache: "no-store" });
   const booksData = await res.json();
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -19,7 +19,7 @@ const BooksPage = async () => {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {booksData.map((book, index) => (
-          <BooksCard key={index} book={book} />
+          <BooksCard key={book._id} book={book} />
         ))}
       </div>
     </main>

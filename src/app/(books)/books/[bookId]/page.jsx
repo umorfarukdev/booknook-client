@@ -29,6 +29,12 @@ export async function generateMetadata({ params }) {
 const BookDetailsPage = async ({ params }) => {
   const { bookId } = await params;
 
+  const session = await auth.api.getSession({ headers: await headers() });
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
   const jwtToken = await auth.api.getToken({ headers: await headers() });
   const token = jwtToken?.token;
 
@@ -42,11 +48,7 @@ const BookDetailsPage = async ({ params }) => {
     },
   );
 
-  const session = await auth.api.getSession({ headers: await headers() });
 
-  if (!session?.user) {
-    redirect("/login");
-  }
 
   if (!response.ok) {
     if (response.status === 404) {

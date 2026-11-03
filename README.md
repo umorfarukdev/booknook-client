@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 BookNook – Online Library Management System
 
-## Getting Started
+## BookNook is a modern online library management system that allows users to explore books, manage their personal book collections, borrow books, and track their borrowed books.
 
-First, run the development server:
+# ✨ Features
+### User Authentication – Register and log in securely using email and password.
+### Google Authentication – Sign in using a Google account.
+### Browse Books – Explore available books and view book details.
+### Add Books – Add new books to the library.
+### Manage Books – Update and delete your added books.
+### Borrow Books – Borrow available books from the library.
+### My Borrows – View borrowed books and their return dates.
+### Return Books – Return borrowed books.
+### Book Availability – Track available book copies.
+### Responsive Design – User-friendly interface across different devices.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+#🛠️ Technologies Used
+## Frontend
+### Next.js
+### React.js
+### Tailwind CSS
+### Shadcn/UI
+### Lucide React
+### React Toastify
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Backend
+###  Node.js
+### Express.js
+### TypeScript
+### MongoDB
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Authentication
+### Better Auth
+### Google Authentication
+### JWT Security
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+# 🔐 Security
 
-To learn more about Next.js, take a look at the following resources:
+### Authentication is handled using Better Auth.
+### rotected routes help prevent unauthorized access.
+### Sensitive credentials are stored in environment variables.
+### Environment files should not be committed to the public repository.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 🌐 Live Application
+## Visit BookNook:
+https://booknook-client-lovat.vercel.app/

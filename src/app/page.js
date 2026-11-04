@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen max-w-7xl mx-auto">
+    <main className="min-h-screen min-w-0 w-full max-w-7xl mx-auto overflow-x-clip">
       <BookCarousel />
       <NewestBooks></NewestBooks>
       <Borrowing></Borrowing>

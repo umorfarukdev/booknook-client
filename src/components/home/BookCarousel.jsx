@@ -49,19 +49,19 @@ const BookCarousel = () => {
           pagination={{
             clickable: true,
           }}
-          className="!pb-12"
+          className="pb-12!"
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
               <div
-                className="relative min-h-[420px] overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 shadow-[0_30px_65px_-30px_rgba(15,23,42,0.7)]"
+                className="relative flex min-h-[360px] items-center overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 shadow-[0_30px_65px_-30px_rgba(15,23,42,0.7)] sm:min-h-[420px]"
                 style={{
                   backgroundImage: `linear-gradient(90deg, rgba(15,23,42,0.8), rgba(15,23,42,0.25)), url(${slide.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               >
-                <div className="relative z-10 flex h-full items-center">
+                <div className="relative z-10">
                   <div className="max-w-xl p-8 sm:p-12 lg:p-16">
                     <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/90 backdrop-blur-sm">
                       {slide.tag}

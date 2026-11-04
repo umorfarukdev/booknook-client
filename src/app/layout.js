@@ -1,6 +1,6 @@
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
- import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 import Navbar from "../components/shared/Navbar.jsx";
 import Footer from "../components/shared/Footer.jsx";

@@ -63,7 +63,7 @@ const Navbar = () => {
           </div>
           <Link
             href="/"
-            className="btn btn-ghost px-2 text-xl"
+            className="flex items-center gap-2 text-xl"
             aria-label="BookNook home"
           >
             <Image

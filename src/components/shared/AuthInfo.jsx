@@ -70,7 +70,7 @@ const AuthInfo = () => {
 
               <DropdownMenuItem
                 onClick={handleLogout}
-                className="cursor-pointer text-red-500"
+                className="cursor-pointer text-lg mt-2 btn text-red-500"
               >
                 Logout
               </DropdownMenuItem>

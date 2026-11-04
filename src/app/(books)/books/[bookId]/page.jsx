@@ -7,13 +7,16 @@ import { headers } from "next/headers";
 export async function generateMetadata({ params }) {
   const { bookId } = await params;
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`,
+    );
     if (res.ok) {
       const book = await res.json();
       if (book?.title) {
         return {
           title: `BookNook | ${book.title}`,
-          description: book.description || `Read about ${book.title} on BookNook.`,
+          description:
+            book.description || `Read about ${book.title} on BookNook.`,
         };
       }
     }
@@ -38,17 +41,21 @@ const BookDetailsPage = async ({ params }) => {
   const jwtToken = await auth.api.getToken({ headers: await headers() });
   const token = jwtToken?.token;
 
+  // Book IDs are MongoDB ObjectIds. A request like /books/lfsdjlsakf would
+  // never exist, and the API crashes on invalid ObjectId, so 404 early.
+  if (!/^[0-9a-fA-F]{24}$/.test(bookId)) {
+    notFound();
+  }
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/book/${bookId}`,
     {
       headers: {
-        authorization: `Bearer ${token}`
+        authorization: `Bearer ${token}`,
       },
       cache: "no-store",
     },
   );
-
-
 
   if (!response.ok) {
     if (response.status === 404) {
@@ -57,6 +64,8 @@ const BookDetailsPage = async ({ params }) => {
     throw new Error(`Failed to load books: ${response.status}`);
   }
 
+  // The API returns an empty body (200) when a valid ObjectId is not found,
+  // so parse defensively and treat an empty/invalid payload as a 404.
   const book = await response.json();
 
   if (!book) {

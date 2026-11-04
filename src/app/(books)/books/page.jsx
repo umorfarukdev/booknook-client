@@ -1,4 +1,5 @@
 import BooksCard from "@/components/books/BooksCard";
+import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "BookNook | All Books",
@@ -6,12 +7,26 @@ export const metadata = {
 };
 
 const BooksPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, { cache: "no-store" });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    if (res.status === 404) {
+      notFound();
+    }
+
+    throw new Error(`Failed to load book: ${response.status}`);
+  }
   const booksData = await res.json();
+  if (!booksData) {
+    notFound();
+  }
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <header className="mb-8 sm:mb-10">
-        <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">All Books</h1>
+        <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+          All Books
+        </h1>
         <p className="mt-2 text-sm text-slate-600 sm:text-base">
           Find your next favorite read.
         </p>
